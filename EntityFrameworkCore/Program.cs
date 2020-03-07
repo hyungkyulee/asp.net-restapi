@@ -59,11 +59,10 @@ namespace EntityFrameworkCore
             Console.WriteLine("\n=====================================");
             Console.WriteLine("UPDATE Query");
 
-            var updateItem = new User
-            {
-                UserId = 4,
-                UserName = "4th User Updated",
-            };
+            //var updateItem = db.Users.Select(x => x.UserId == 4);
+            var updateItem = db.Users.Find(4);
+            updateItem.UserName = "4th User Updated";
+
             db.Entry(updateItem).State = EntityState.Modified;
             db.SaveChanges();
 
@@ -81,10 +80,7 @@ namespace EntityFrameworkCore
             Console.WriteLine("\n=====================================");
             Console.WriteLine("DELETE Query");
 
-            var delItem = new User
-            {
-                UserId = 4,
-            };
+            var delItem = db.Users.Find(4);
             db.Users.Remove(delItem);
             db.SaveChanges();
 
